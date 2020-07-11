@@ -24,14 +24,12 @@ export const BookContext = React.createContext()
 export const UserAndTokenContext = React.createContext()
 export const GroupsContext = React.createContext()
 
-// Axios.defaults.baseURL = process.env.baseURL || 'http://localhost:5000'
+Axios.defaults.baseURL = process.env.BASE_URL || 'http://localhost:5000'
 
 // Interceptor to send Auth token --> should probably be in another file
-let testVar
 Axios.interceptors.request.use(
   config => {
-    const { origin } = new URL(config.url)
-    testVar = config
+    const { origin } = new URL(config.baseURL)
     const allowedOrigins = ['https://bookworms-rocks.herokuapp.com/', 'http://localhost:5000'] 
     const accessToken = localStorage.getItem('accessToken') 
 
@@ -51,7 +49,6 @@ function App() {
   const [user, setUser] = useState({ _id: '', name: '', loggedInStatus: false })
   const [groups, setGroups] = useState(null)
   const [currentGroup, setCurrentGroup] = useState(null)
-  const [testVarState, setTestVarState] = useState(testVar)
 
   // Setting the token value if there is a valid one in local storage. Else, remove the to token
   useEffect(() => {
@@ -174,7 +171,6 @@ function App() {
                     <Grid item sm={8} >
                         { !user.loggedInStatus && <HomeGuest />}
                         <PrivateRoute component={SearchAndRateBooks} />
-                          <pre>{JSON.stringify(testVarState)}</pre>
                     <Grid item sm={2} />
                   </Grid>
                   </Grid>
