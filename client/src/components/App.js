@@ -27,21 +27,21 @@ export const GroupsContext = React.createContext()
 // Axios.defaults.baseURL = process.env.baseURL || 'http://localhost:5000'
 
 // Interceptor to send Auth token --> should probably be in another file
-// Axios.interceptors.request.use(
-//   config => {
-//     const { origin } = new URL(config.baseURL)
-//     const allowedOrigins = [process.env.baseURL, 'http://localhost:5000'] 
-//     const accessToken = localStorage.getItem('accessToken') 
+Axios.interceptors.request.use(
+  config => {
+    const { origin } = new URL(config.baseURL)
+    const allowedOrigins = ['https://bookworms-rocks.herokuapp.com/', 'http://localhost:5000'] 
+    const accessToken = localStorage.getItem('accessToken') 
 
-//     if (allowedOrigins.includes(origin)) {
-//       config.headers.authorization = `Bearer ${accessToken}`
-//     }
-//     return config
-//   },
-//   err => {
-//     return Promise.reject(`promise rejection: ${err}`)
-//   }
-// )
+    if (allowedOrigins.includes(origin)) {
+      config.headers.authorization = `Bearer ${accessToken}`
+    }
+    return config
+  },
+  err => {
+    return Promise.reject(`promise rejection: ${err}`)
+  }
+)
 
 function App() {
   const [books, setBooks] = useState([])
