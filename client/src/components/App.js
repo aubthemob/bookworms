@@ -30,7 +30,7 @@ Axios.defaults.baseURL = process.env.BASE_URL || 'http://localhost:5000'
 Axios.interceptors.request.use(
   config => {
     const { origin } = new URL(config.baseURL)
-    const allowedOrigins = ['https://bookworms-rocks.herokuapp.com/', 'http://localhost:5000'] 
+    const allowedOrigins = ['https://bookworms-rocks.herokuapp.com', 'http://localhost:5000'] 
     const accessToken = localStorage.getItem('accessToken') 
 
     if (allowedOrigins.includes(origin)) {
