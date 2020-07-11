@@ -11,7 +11,6 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const path = require('path')
 const cookieParser = require('cookie-parser')
-const { createProxyMiddleware } = require('http-proxy-middleware');
 
 let app = express()
 
@@ -41,9 +40,5 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const port = process.env.PORT || 5000
-
-// if (process.env.NODE_ENV === 'production') {
-//     app.use('/api', createProxyMiddleware({ target: 'bookworms-rocks', changeOrigin: true }));
-// }
 
 app.listen(port)

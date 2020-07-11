@@ -64,7 +64,6 @@ export default function CreateGroup({ handleModalClose, handleProfileMenuClose }
     }
  
     async function handleFormSubmit(e) {
-        console.log(e)
         e.preventDefault()
         const errors = validate()
         if (!errors) {
@@ -77,7 +76,6 @@ export default function CreateGroup({ handleModalClose, handleProfileMenuClose }
             try {
                 const { status, data } = await Axios.post(`/api/group`, reqBody)
                 if (status === 201 && data !== null) {
-                    console.log(data)
                     handleModalClose()
                     setForm({ groupName: '', groupNameError: '', emailInput: '', emailInputError: '', emailList: [] })
                     setGroups(prevState => [...prevState, data])

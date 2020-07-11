@@ -14,7 +14,6 @@ export default function CallbackRoute() {
         async function nylasCallbackToken() {
             if (window.location.search.includes("code=")) {
                 try {
-                    console.log('nylas callback called')
                     const { data } = await Axios.post(`/api/nylas-auth-callback/${window.location.search}`, { userId: user._id })
                     const newUser = user
                     setUser({ ...newUser, ...data })

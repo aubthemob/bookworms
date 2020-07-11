@@ -80,7 +80,6 @@ export default function SignUpForm({ setGuestToggle }) {
                     })
                     setUser({_id: newData._id, email: newData.email, name: newData.name, loggedInStatus: true})
                     setCurrentGroup(newData.initGroup)
-                    console.log(newData)
                 }
             } catch (err) {
                 if (err.response.status === 400) {

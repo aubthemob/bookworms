@@ -109,7 +109,6 @@ function App() {
 
   // Handlers
   async function handleBookDelete(_id) {
-    console.log('DELETE book called')
     let newBooks = [...books]
     const index = newBooks.findIndex(book => book._id === _id)
     newBooks = newBooks.filter(book => book !== newBooks[index])
