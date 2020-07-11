@@ -39,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NavbarLoggedOut({ setGuestToggle }) {
     const [loginForm, setLoginForm] = useState({ email: '', password: '', error: '' })
-    const [testState, setTestState] = useState(false)
     
     const { setToken } = useContext(UserAndTokenContext)
 
@@ -53,22 +52,26 @@ export default function NavbarLoggedOut({ setGuestToggle }) {
     async function handleLoginFormSubmit(e) {
         e.preventDefault()
         try {
-            const { data, status } = await Axios.get(`/api/test`) // returns jwt
-            status === 200 ? setTestState(true) : setTestState(false)
-            // const { data, status } = await Axios.post(`/api/login`, loginForm) // returns jwt
-            // if (data !== null && status !== 401) {
-            //     localStorage.setItem('accessToken', data.accessToken) // use localstorage to store JWT
-            //     setToken(data.accessToken)
-            //     // setUser({...user, loggedInStatus: true}) 
-            //     setLoginForm({ email: '', password: '' })
-            // }
+            const { data, status } = await Axios.post(`/api/login`, loginForm) // returns jwt
+            if (data !== null && status !== 401) {
+                localStorage.setItem('accessToken', data.accessToken) // use localstorage to store JWT
+                setToken(data.accessToken)
+                // setUser({...user, loggedInStatus: true}) 
+                setLoginForm({ email: '', password: '' })
+            }
         } catch (err) {
-            console.log(err)
             if (err.response.status === 401) {
                 setLoginForm(prevState => {
                     return {
                         ...prevState,
                         error: 'Credentials do not match'
+                    }
+                })
+            } else {
+                setLoginForm(prevState => {
+                    return {
+                        ...prevState,
+                        error: 'An error occurred. Please try again.'
                     }
                 })
             }
@@ -77,7 +80,6 @@ export default function NavbarLoggedOut({ setGuestToggle }) {
     
     return (
         <>
-        <Typography>{String(testState, process.env.baseURL, process.env.PORT, process.env.HOST)}</Typography>
         <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
