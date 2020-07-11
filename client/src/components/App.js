@@ -24,7 +24,7 @@ export const BookContext = React.createContext()
 export const UserAndTokenContext = React.createContext()
 export const GroupsContext = React.createContext()
 
-Axios.defaults.baseURL = process.env.BASE_URL || 'http://localhost:5000'
+Axios.defaults.baseURL = window.location.origin
 
 // Interceptor to send Auth token --> should probably be in another file
 Axios.interceptors.request.use(
