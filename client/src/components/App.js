@@ -29,7 +29,7 @@ export const GroupsContext = React.createContext()
 // Interceptor to send Auth token --> should probably be in another file
 Axios.interceptors.request.use(
   config => {
-    const { origin } = new URL(config.baseURL)
+    const { origin } = new URL(config.url)
     const allowedOrigins = ['https://bookworms-rocks.herokuapp.com/', 'http://localhost:5000'] 
     const accessToken = localStorage.getItem('accessToken') 
 
