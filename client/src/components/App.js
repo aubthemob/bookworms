@@ -7,7 +7,7 @@ import Axios from 'axios'
 import jwt from 'jsonwebtoken'
 
 // Styles imports
-import { Grid } from '@material-ui/core'
+import { Grid, Typography } from '@material-ui/core'
 
 // Components
 import Navbar from './Navbar/Navbar'
@@ -27,9 +27,11 @@ export const GroupsContext = React.createContext()
 // Axios.defaults.baseURL = process.env.baseURL || 'http://localhost:5000'
 
 // Interceptor to send Auth token --> should probably be in another file
+let testVar
 Axios.interceptors.request.use(
   config => {
     const { origin } = new URL(config.url)
+    testVar = config
     const allowedOrigins = ['https://bookworms-rocks.herokuapp.com/', 'http://localhost:5000'] 
     const accessToken = localStorage.getItem('accessToken') 
 
@@ -49,6 +51,7 @@ function App() {
   const [user, setUser] = useState({ _id: '', name: '', loggedInStatus: false })
   const [groups, setGroups] = useState(null)
   const [currentGroup, setCurrentGroup] = useState(null)
+  const [testVarState, setTestVarState] = useState(testVar)
 
   // Setting the token value if there is a valid one in local storage. Else, remove the to token
   useEffect(() => {
@@ -171,6 +174,7 @@ function App() {
                     <Grid item sm={8} >
                         { !user.loggedInStatus && <HomeGuest />}
                         <PrivateRoute component={SearchAndRateBooks} />
+                          <pre>{JSON.stringify(testVarState)}</pre>
                     <Grid item sm={2} />
                   </Grid>
                   </Grid>
