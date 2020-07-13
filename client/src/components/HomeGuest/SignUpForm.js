@@ -126,11 +126,6 @@ export default function SignUpForm({ setGuestToggle }) {
             errors.emailError = 'Please enter a valid email address'
         }
 
-        if (regForm.name !== '' && !validator.isAlphanumeric(regForm.name)) {
-            isError = true
-            errors.nameError = 'Name must not contain any special characters'
-        }
-
         if (regForm.password.length < 8 || regForm.password.length > 30) {
             isError = true
             errors.passwordError = 'Password must be between 8 and 30 characters in length'
