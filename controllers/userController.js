@@ -86,7 +86,7 @@ exports.nylasAuth = async function(req, res, next) {
     try {
         options = {
             loginHint: req.params.userEmail,
-            redirectURI: 'http://localhost:3000/nylas-auth-callback',
+            redirectURI: 'https://bookworms-rocks.herokuapp.com/nylas-auth-callback',
             scopes: ['calendar.read_only'],
         };
         
