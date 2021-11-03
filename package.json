@@ -52,7 +52,7 @@
     "react-draggable": "^4.4.3",
     "react-router-dom": "^5.2.0",
     "uniqid": "^5.2.0",
-    "validator": "^13.1.1",
+    "validator": "^13.7.0",
     "xml-js": "^1.6.11",
     "xml2json": "^0.12.0"
   },
