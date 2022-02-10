@@ -44,7 +44,7 @@
     "moment": "^2.27.0",
     "mongoose": "^5.9.22",
     "mongoose-beautiful-unique-validation": "^7.1.1",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "nodemon": "^2.0.4",
     "nylas": "^5.1.0",
     "package-merge": "^0.1.2",
